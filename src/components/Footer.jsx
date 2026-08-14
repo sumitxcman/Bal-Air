@@ -165,8 +165,13 @@ export default function Footer({ setActiveTab, onOpenPolicy }) {
         </div>
 
         {/* Bottom Rights & Policy Modals */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 text-center sm:text-left">
-          <p>© {new Date().getFullYear()} BelAir Luxury Stay. All Rights Reserved. Designed for 5-Star Hospitality Excellence.</p>
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <p className="text-[11px] sm:text-xs text-gray-500 font-medium leading-relaxed sm:leading-normal">
+            © {new Date().getFullYear()} BelAir Luxury Stay. All Rights Reserved.
+            <span className="block sm:inline sm:ml-1 text-[10px] sm:text-xs text-gray-400">
+              Designed for 5-Star Hospitality Excellence.
+            </span>
+          </p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium">
             <button onClick={() => onOpenPolicy('privacy')} className="hover:text-[#C5A028] transition-colors hover:underline">
               Privacy Policy
