@@ -25,14 +25,14 @@ export default function RoomsPage({ onSelectRoom }) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8 sm:space-y-10">
       
       {/* Header Title */}
-      <div className="text-center max-w-2xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-widest text-[#C5A028]">
+      <div className="text-center max-w-2xl mx-auto space-y-2 sm:space-y-3">
+        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#C5A028]">
           5-Star Boutique Accommodations • Dehradun
         </span>
-        <h1 className="text-4xl font-serif font-extrabold text-[#0B0B0C]">
+        <h1 className="text-3xl sm:text-4xl font-serif font-extrabold text-[#0B0B0C]">
           LUXURY ROOMS & SUITES
         </h1>
         <p className="text-xs text-[#55534E]">
@@ -41,12 +41,12 @@ export default function RoomsPage({ onSelectRoom }) {
       </div>
 
       {/* Filter & Sorting Control Bar */}
-      <div className="bg-white border border-[#C5A028]/30 rounded-2xl p-6 shadow-md space-y-4">
+      <div className="bg-white border border-[#C5A028]/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-md space-y-4">
         
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-4">
           
-          {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2">
+          {/* Touch-Scrollable Category Tabs on Mobile */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none flex-nowrap md:flex-wrap">
             {[
               { id: 'all', label: 'All Accommodations', count: ROOMS_DATA.length },
               { id: 'deluxe', label: 'Deluxe Rooms', count: ROOMS_DATA.filter(r => r.category === 'Deluxe').length },
@@ -58,7 +58,7 @@ export default function RoomsPage({ onSelectRoom }) {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   selectedCategory === cat.id
                     ? 'bg-[#C5A028] text-white shadow-md'
                     : 'bg-[#F9F8F5] text-[#0B0B0C] hover:text-[#C5A028] border border-gray-200'
@@ -75,9 +75,11 @@ export default function RoomsPage({ onSelectRoom }) {
           </div>
 
           {/* Sort Dropdown */}
-          <div className="flex items-center gap-2 self-end md:self-auto">
-            <SlidersHorizontal className="w-4 h-4 text-[#C5A028]" />
-            <span className="text-xs text-[#55534E] font-medium whitespace-nowrap">Sort By:</span>
+          <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0">
+            <div className="flex items-center gap-1.5">
+              <SlidersHorizontal className="w-4 h-4 text-[#C5A028]" />
+              <span className="text-xs text-[#55534E] font-medium whitespace-nowrap">Sort By:</span>
+            </div>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
@@ -93,9 +95,9 @@ export default function RoomsPage({ onSelectRoom }) {
         </div>
 
         {/* Price Slider */}
-        <div className="flex items-center justify-between text-xs text-[#55534E] pt-1">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 text-xs text-[#55534E] pt-1">
           <div className="flex items-center gap-3 w-full max-w-xs">
-            <span>Max Price: <strong className="text-[#C5A028]">₹{maxPrice.toLocaleString('en-IN')}</strong></span>
+            <span className="whitespace-nowrap">Max Price: <strong className="text-[#C5A028]">₹{maxPrice.toLocaleString('en-IN')}</strong></span>
             <input
               type="range"
               min="2500"
@@ -107,7 +109,7 @@ export default function RoomsPage({ onSelectRoom }) {
             />
           </div>
 
-          <span className="text-[11px] text-emerald-700 font-bold">
+          <span className="text-[11px] text-emerald-700 font-bold self-end sm:self-auto">
             Showing {filteredRooms.length} Available Suites
           </span>
         </div>
@@ -116,7 +118,7 @@ export default function RoomsPage({ onSelectRoom }) {
 
       {/* Room Grid */}
       {filteredRooms.length === 0 ? (
-        <div className="bg-white border border-gray-200 rounded-2xl p-12 text-center text-gray-500 space-y-3">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 sm:p-12 text-center text-gray-500 space-y-3">
           <BedDouble className="w-12 h-12 stroke-1 text-gray-400 mx-auto" />
           <p className="text-base font-serif text-[#0B0B0C]">No suites matched your filter criteria.</p>
           <button
@@ -130,7 +132,7 @@ export default function RoomsPage({ onSelectRoom }) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredRooms.map((room) => (
             <RoomCard
               key={room.id}
@@ -143,11 +145,11 @@ export default function RoomsPage({ onSelectRoom }) {
       )}
 
       {/* Guarantee Note */}
-      <div className="bg-[#F5F2EA] border border-[#C5A028]/30 rounded-xl p-6 text-center text-xs space-y-2">
+      <div className="bg-[#F5F2EA] border border-[#C5A028]/30 rounded-xl p-5 sm:p-6 text-center text-xs space-y-2">
         <h4 className="font-serif text-[#C5A028] font-bold text-sm flex items-center justify-center gap-1.5">
           <Sparkles className="w-4 h-4" /> BelAir Official Direct Booking Benefits
         </h4>
-        <p className="text-[#55534E] max-w-2xl mx-auto">
+        <p className="text-[#55534E] max-w-2xl mx-auto leading-relaxed">
           When you book directly on our website, enjoy Best Rate Guarantee, complimentary room upgrades upon availability, early check-in preference, and priority spa access.
         </p>
       </div>
