@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, MessageCircle, Star, Send, ShieldCheck, Globe, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, Star, Send, ShieldCheck, Globe, ChevronRight, FileText } from 'lucide-react';
 import { HOTEL_DETAILS } from '../data/hotelDetails';
 
 export default function Footer({ setActiveTab, onOpenPolicy }) {
@@ -91,7 +91,7 @@ export default function Footer({ setActiveTab, onOpenPolicy }) {
             </ul>
           </div>
 
-          {/* Contact Details & WhatsApp */}
+          {/* Contact Details & Policies */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-widest text-[#C5A028] mb-4">
               Contact & Location
@@ -118,11 +118,27 @@ export default function Footer({ setActiveTab, onOpenPolicy }) {
                   Direct WhatsApp Chat
                 </a>
               </li>
-              <li className="flex items-center gap-2">
+              <li className="flex items-center gap-2 pb-1">
                 <Mail className="w-4 h-4 text-[#C5A028] shrink-0" />
                 <a href="mailto:reservations@belairluxury.com" className="hover:text-[#C5A028]">
                   reservations@belairluxury.com
                 </a>
+              </li>
+
+              {/* Policy Links under Email */}
+              <li className="pt-2.5 border-t border-gray-200 space-y-1.5">
+                <span className="text-[10px] uppercase font-bold text-[#C5A028] block tracking-wider flex items-center gap-1">
+                  <FileText className="w-3 h-3 text-[#C5A028]" /> Guest Policies
+                </span>
+                <button onClick={() => onOpenPolicy('privacy')} className="block text-xs text-[#55534E] hover:text-[#C5A028] transition-colors font-medium">
+                  • Privacy Policy
+                </button>
+                <button onClick={() => onOpenPolicy('terms')} className="block text-xs text-[#55534E] hover:text-[#C5A028] transition-colors font-medium">
+                  • Terms of Service
+                </button>
+                <button onClick={() => onOpenPolicy('cancellation')} className="block text-xs text-[#55534E] hover:text-[#C5A028] transition-colors font-medium">
+                  • Cancellation Policy
+                </button>
               </li>
             </ul>
           </div>
@@ -164,25 +180,14 @@ export default function Footer({ setActiveTab, onOpenPolicy }) {
 
         </div>
 
-        {/* Bottom Rights & Policy Modals */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <p className="text-[11px] sm:text-xs text-gray-500 font-medium leading-relaxed sm:leading-normal">
+        {/* Clean Bottom Copyright Notice */}
+        <div className="pt-8 text-center">
+          <p className="text-[11px] sm:text-xs text-gray-500 font-medium leading-relaxed sm:leading-normal max-w-2xl mx-auto">
             © {new Date().getFullYear()} BelAir Luxury Stay. All Rights Reserved.
             <span className="block sm:inline sm:ml-1 text-[10px] sm:text-xs text-gray-400">
               Designed for 5-Star Hospitality Excellence.
             </span>
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-medium">
-            <button onClick={() => onOpenPolicy('privacy')} className="hover:text-[#C5A028] transition-colors hover:underline">
-              Privacy Policy
-            </button>
-            <button onClick={() => onOpenPolicy('terms')} className="hover:text-[#C5A028] transition-colors hover:underline">
-              Terms of Service
-            </button>
-            <button onClick={() => onOpenPolicy('cancellation')} className="hover:text-[#C5A028] transition-colors hover:underline">
-              Cancellation Policy
-            </button>
-          </div>
         </div>
 
       </div>
